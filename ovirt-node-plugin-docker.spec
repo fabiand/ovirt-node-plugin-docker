@@ -25,7 +25,7 @@ This package provides some TUI packages for monitoring docker.
 
 
 %prep
-%setup
+%setup -n "%{name}-master"
 
 
 %build
@@ -34,6 +34,7 @@ echo Nothing
 
 %install
 DSTDIR=%{buildroot}/%{python_sitelib}/ovirt/node/setup/docker
+mkdir -p $DSTDIR
 cp src/*.py $DSTDIR
 
 
@@ -50,18 +51,9 @@ cp src/*.py $DSTDIR
 
 
 %files
-%{python_sitelib}/ovirt/node/setup/hostedengine/__init__.py*
-%{python_sitelib}/ovirt/node/setup/hostedengine/hosted_engine_page.py*
+%{python_sitelib}/ovirt/node/setup/docker/
 
-
-
-%files
-%{python_sitelib}/ovirt/node/setup/hostedengine
-#%{_sysconfdir}/ovirt-plugins.d
-
-%files recipe
-%{recipe_root}
 
 %changelog
-* Fri Jul 25 2014 Joey Boggs <jboggs@redhat.com> 0.0.1
-- initial commit
+* Fri Jul 25 2014 Fabian Deutsch <fabiand@redhat.com> 0.1.0-0.1
+- Initial commit
